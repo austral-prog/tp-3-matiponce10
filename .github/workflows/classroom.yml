@@ -44,6 +44,8 @@ jobs:
     - name: Autograding Reporter
       uses: education/autograding-grading-reporter@v1
       env:
-        RUN-PYTHON-TEST_RESULTS: "${{steps.run-python-test.outputs.result}}"
+        RUN-PYTHON-TEST-1_RESULTS: "${{steps.run-python-test-1.outputs.result}}"
+        RUN-PYTHON-TEST-2_RESULTS: "${{steps.run-python-test-2.outputs.result}}"
+        RUN-PYTHON-TEST-3_RESULTS: "${{steps.run-python-test-3.outputs.result}}"
       with:
-        runners: "run-python-test-1,run-python-test-2,run-python-test-3"
+        runners: run-python-test-1,run-python-test-2,run-python-test-3
