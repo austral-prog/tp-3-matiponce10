@@ -46,4 +46,4 @@ jobs:
       env:
         RUN-PYTHON-TEST_RESULTS: "${{steps.run-python-test.outputs.result}}"
       with:
-        runners: [run-python-test-1, run-python-test-2, run-python-test-3]
+        runners: "run-python-test-1,run-python-test-2,run-python-test-3"
