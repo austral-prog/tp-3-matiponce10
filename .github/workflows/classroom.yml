@@ -18,12 +18,12 @@ jobs:
       id: run-python-test-1
       uses: education/autograding-command-grader@v1
       with:
-        test-name: run python test
+        test-name: run python test 1
         setup-command: sudo -H pip3 install pytest
-        command: pytest tp3_in_string.py
+        command: pytest tp3_in_string_test.py
         timeout: 1
         max-score: 1
-    - name: run python test
+    - name: run python test 2
       id: run-python-test-2
       uses: education/autograding-command-grader@v1
       with:
@@ -32,7 +32,7 @@ jobs:
         command: pytest tp3_slice_simple_test.py
         timeout: 1
         max-score: 1
-    - name: run python test
+    - name: run python test 3
       id: run-python-test-3
       uses: education/autograding-command-grader@v1
       with:
@@ -46,4 +46,4 @@ jobs:
       env:
         RUN-PYTHON-TEST_RESULTS: "${{steps.run-python-test.outputs.result}}"
       with:
-        runners: run-python-test
+        runners: run-python-test-1, run-python-test-2, run-python-test-3
