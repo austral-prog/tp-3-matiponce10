@@ -15,12 +15,30 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
     - name: run python test
-      id: run-python-test
+      id: run-python-test-1
       uses: education/autograding-command-grader@v1
       with:
         test-name: run python test
         setup-command: sudo -H pip3 install pytest
-        command: pytest
+        command: pytest tp3_in_string.py
+        timeout: 1
+        max-score: 1
+    - name: run python test
+      id: run-python-test-2
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: run python test
+        setup-command: sudo -H pip3 install pytest
+        command: pytest tp3_slice_simple_test.py
+        timeout: 1
+        max-score: 1
+    - name: run python test
+      id: run-python-test-3
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: run python test
+        setup-command: sudo -H pip3 install pytest
+        command: pytest tp3_slice_advanced_test.py
         timeout: 1
         max-score: 1
     - name: Autograding Reporter
