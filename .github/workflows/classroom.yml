@@ -14,7 +14,7 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: run python test
+    - name: run python test 1
       id: run-python-test-1
       uses: education/autograding-command-grader@v1
       with:
@@ -27,7 +27,7 @@ jobs:
       id: run-python-test-2
       uses: education/autograding-command-grader@v1
       with:
-        test-name: run python test
+        test-name: run python test 2
         setup-command: sudo -H pip3 install pytest
         command: pytest tp3_slice_simple_test.py
         timeout: 1
@@ -36,7 +36,7 @@ jobs:
       id: run-python-test-3
       uses: education/autograding-command-grader@v1
       with:
-        test-name: run python test
+        test-name: run python test 3
         setup-command: sudo -H pip3 install pytest
         command: pytest tp3_slice_advanced_test.py
         timeout: 1
