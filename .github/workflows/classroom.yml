@@ -8,7 +8,7 @@ permissions:
   actions: read
   contents: read
 jobs:
-  run-autograding-tests:
+  run-autograding-tests-1:
     runs-on: ubuntu-latest
     if: github.actor != 'github-classroom[bot]'
     steps:
@@ -23,6 +23,19 @@ jobs:
         command: pytest tp3_in_string_test.py
         timeout: 1
         max-score: 1
+    - name: Autograding Reporter
+      uses: education/autograding-grading-reporter@v1
+      env:
+        RUN-PYTHON-TEST-1_RESULTS: "${{steps.run-python-test-1.outputs.result}}"
+      with:
+        runners: run-python-test-1
+  
+  run-autograding-tests-2:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
     - name: run python test 2
       id: run-python-test-2
       uses: education/autograding-command-grader@v1
@@ -32,6 +45,19 @@ jobs:
         command: pytest tp3_slice_simple_test.py
         timeout: 1
         max-score: 1
+    - name: Autograding Reporter
+      uses: education/autograding-grading-reporter@v1
+      env:
+        RUN-PYTHON-TEST-2_RESULTS: "${{steps.run-python-test-2.outputs.result}}"
+      with:
+        runners: run-python-test-2
+
+  run-autograding-tests-3:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
     - name: run python test 3
       id: run-python-test-3
       uses: education/autograding-command-grader@v1
@@ -44,8 +70,49 @@ jobs:
     - name: Autograding Reporter
       uses: education/autograding-grading-reporter@v1
       env:
-        RUN-PYTHON-TEST-1_RESULTS: "${{steps.run-python-test-1.outputs.result}}"
-        RUN-PYTHON-TEST-2_RESULTS: "${{steps.run-python-test-2.outputs.result}}"
         RUN-PYTHON-TEST-3_RESULTS: "${{steps.run-python-test-3.outputs.result}}"
       with:
-        runners: run-python-test-1,run-python-test-2,run-python-test-3
+        runners: run-python-test-3
+
+# jobs:
+#   run-autograding-tests:
+#     runs-on: ubuntu-latest
+#     if: github.actor != 'github-classroom[bot]'
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v4
+#     - name: run python test 1
+#       id: run-python-test-1
+#       uses: education/autograding-command-grader@v1
+#       with:
+#         test-name: run python test 1
+#         setup-command: sudo -H pip3 install pytest
+#         command: pytest tp3_in_string_test.py
+#         timeout: 1
+#         max-score: 1
+#     - name: run python test 2
+#       id: run-python-test-2
+#       uses: education/autograding-command-grader@v1
+#       with:
+#         test-name: run python test 2
+#         setup-command: sudo -H pip3 install pytest
+#         command: pytest tp3_slice_simple_test.py
+#         timeout: 1
+#         max-score: 1
+#     - name: run python test 3
+#       id: run-python-test-3
+#       uses: education/autograding-command-grader@v1
+#       with:
+#         test-name: run python test 3
+#         setup-command: sudo -H pip3 install pytest
+#         command: pytest tp3_slice_advanced_test.py
+#         timeout: 1
+#         max-score: 1
+#     - name: Autograding Reporter
+#       uses: education/autograding-grading-reporter@v1
+#       env:
+#         RUN-PYTHON-TEST-1_RESULTS: "${{steps.run-python-test-1.outputs.result}}"
+#         RUN-PYTHON-TEST-2_RESULTS: "${{steps.run-python-test-2.outputs.result}}"
+#         RUN-PYTHON-TEST-3_RESULTS: "${{steps.run-python-test-3.outputs.result}}"
+#       with:
+#         runners: run-python-test-1,run-python-test-2,run-python-test-3
