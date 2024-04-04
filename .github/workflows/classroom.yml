@@ -14,18 +14,16 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: run python test
-      id: run-python-test
-      uses: education/autograding-command-grader@v1
+    - name: run all python tests
+      id: run-all-python-tests
+      uses: education/autograding-python-grader@v1
       with:
-        test-name: run python test
-        setup-command: sudo -H pip3 install pytest
-        command: pytest
-        timeout: 1
+        timeout: 10
         max-score: 1
+        setup-command: ''
     - name: Autograding Reporter
       uses: education/autograding-grading-reporter@v1
       env:
-        RUN-PYTHON-TEST_RESULTS: "${{steps.run-python-test.outputs.result}}"
+        RUN-ALL-PYTHON-TESTS_RESULTS: "${{steps.run-all-python-tests.outputs.result}}"
       with:
-        runners: run-python-test
+        runners: run-all-python-tests
