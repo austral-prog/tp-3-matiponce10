@@ -1,6 +1,6 @@
 def check_vowels():
     # Código a implementar utilizando input.
-    a = str(input()).lower()
+    a = str(input())
     print(f"Contiene a: {'a' in a}")
     print(f"Contiene e: {'e' in a}")
     print(f"Contiene i: {'i' in a}")
